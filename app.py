@@ -14,6 +14,7 @@ if 'transacoes' not in st.session_state:
     st.session_state.transacoes = pd.DataFrame(columns=['Ticker', 'Quantidade', 'Preço Unitário', 'Tipo'])
 
 # --- ABA 1: LANÇAR INVESTIMENTOS ---
+# --- ABA 1: LANÇAR INVESTIMENTOS ---
 st.sidebar.header("➕ Nova Transação")
 with st.sidebar.form(key='form_transacao', clear_on_submit=True):
     ticker = st.text_input("Ticker do Ativo (ex: PETR4,11 ou MXRF11)").upper().strip()
@@ -27,7 +28,8 @@ with st.sidebar.form(key='form_transacao', clear_on_submit=True):
     preco = st.number_input("Preço Unitário (R$)", min_value=0.01, step=0.01, format="%.2f")
     tipo = st.selectbox("Tipo de Operação", ["Compra", "Venda"])
     
-    botao_enviar = st.form_submit_form_button("Registrar Transação")
+    # LINHA CORRIGIDA AQUI:
+    botao_enviar = st.form_submit_button("Registrar Transação")
 
 if botao_enviar and ticker:
     nova_linha = pd.DataFrame([{
